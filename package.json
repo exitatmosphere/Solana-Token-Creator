@@ -7,7 +7,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint && yarn prettier",
+    "prettier": "prettier --check --config ./.prettierrc  \"./**/*.{js,jsx,json,md,ts,tsx,yml,css}\"",
+    "prettier:fix": "prettier --config ./.prettierrc --write \"./**/*.{js,jsx,json,md,ts,tsx,yml,css}\""
   },
   "dependencies": {
     "@heroicons/react": "^1.0.5",
@@ -24,6 +26,8 @@
     "next": "12.0.8",
     "next-compose-plugins": "^2.2.1",
     "next-transpile-modules": "^9.0.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-spinners": "^0.13.5",
