@@ -7,10 +7,7 @@ const Create: NextPage = (props) => {
     <div>
       <Head>
         <title>Solana Token Creator - Create Token</title>
-        <meta
-          name="description"
-          content="Create solana fungible token"
-        />
+        <meta name="description" content="Create solana fungible token" />
       </Head>
       <CreateView />
     </div>
