@@ -12,7 +12,7 @@ import {
   getMinimumBalanceForRentExemptMint,
 } from "@solana/spl-token";
 import {
-  createCreateMetadataAccountInstruction,
+  createCreateMetadataAccountV3Instruction,
   PROGRAM_ID,
 } from "@metaplex-foundation/mpl-token-metadata";
 import { FC, useCallback, useState } from "react";
@@ -60,7 +60,7 @@ export const CreateToken: FC = () => {
           TOKEN_PROGRAM_ID,
         ),
 
-        createCreateMetadataAccountInstruction(
+        createCreateMetadataAccountV3Instruction(
           {
             metadata: (
               await PublicKey.findProgramAddress(
@@ -78,15 +78,18 @@ export const CreateToken: FC = () => {
             updateAuthority: publicKey,
           },
           {
-            createMetadataAccountArgs: {
+            createMetadataAccountArgsV3: {
               data: {
                 name: tokenName,
                 symbol: tokenSymbol,
                 uri: tokenUri,
                 creators: null,
                 sellerFeeBasisPoints: 0,
+                collection: null,
+                uses: null,
               },
               isMutable: false,
+              collectionDetails: null,
             },
           },
         ),
