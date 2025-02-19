@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { notify } from "utils/notifications";
-import { Web3Storage } from "web3.storage";
 import { ClipLoader } from "react-spinners";
+import { PinataSDK } from "pinata-web3";
 
 export const UploadMetadata: FC = () => {
   const [ipfsToken, setIpfsToken] = useState("");
@@ -20,11 +20,13 @@ export const UploadMetadata: FC = () => {
   };
 
   const uploadMetadata = async () => {
-    const storage = new Web3Storage({ token: ipfsToken });
+    const pinata = new PinataSDK({
+      pinataJwt: ipfsToken,
+    });
     setIsLoading(true);
     try {
-      const imageCid = await storage.put([imageFile]);
-      const ipfsImageUri = `https://ipfs.io/ipfs/${imageCid}/${imageFile.name}`;
+      const imageUploadResponse = await pinata.upload.file(imageFile);
+      const ipfsImageUri = `https://ipfs.io/ipfs/${imageUploadResponse.IpfsHash}`;
 
       const json = {
         name: tokenName,
@@ -37,8 +39,8 @@ export const UploadMetadata: FC = () => {
       });
       const jsonFileName = "uri.json";
       const jsonFile = new File([jsonBlob], jsonFileName);
-      const jsonCid = await storage.put([jsonFile]);
-      const ipfsJsonUri = `https://ipfs.io/ipfs/${jsonCid}/${jsonFileName}`;
+      const jsonUploadResponse = await pinata.upload.file(jsonFile);
+      const ipfsJsonUri = `https://ipfs.io/ipfs/${jsonUploadResponse.IpfsHash}`;
       setJsonUri(ipfsJsonUri);
     } catch (error: any) {
       notify({ type: "error", message: "Upload failed" });
@@ -57,14 +59,14 @@ export const UploadMetadata: FC = () => {
         <div>
           <div className="mt-4 sm:grid sm:grid-cols-2 sm:gap-4">
             <div className="m-auto p-2">
-              <div className="text-xl font-normal">IPFS provider token</div>
+              <div className="text-xl font-normal">Pinata JWT</div>
               <p>Token used to upload your data to IPFS.</p>
-              <p>Currently only Web3.Storage supported.</p>
+              <p>Currently only Pinata is supported.</p>
               <p>
                 You can get one
                 <a
                   className="cursor-pointer font-medium text-purple-500 hover:text-indigo-500"
-                  href="https://web3.storage/tokens/"
+                  href="https://app.pinata.cloud/developers/api-keys"
                   target="_blank"
                   rel="noreferrer"
                 >

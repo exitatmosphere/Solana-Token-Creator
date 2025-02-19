@@ -26,12 +26,12 @@
     "next": "12.0.8",
     "next-compose-plugins": "^2.2.1",
     "next-transpile-modules": "^9.0.0",
+    "pinata-web3": "^0.5.4",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-spinners": "^0.13.5",
-    "web3.storage": "^4.4.0",
     "zustand": "^3.6.9"
   },
   "devDependencies": {
