@@ -105,6 +105,9 @@ export const AppBar: FC = (props) => {
                 Upload metadata
               </a>
             </Link>
+            <Link href="/utils">
+              <a className="btn btn-ghost rounded-btn btn-sm">Token utils</a>
+            </Link>
             <Link href="/misc">
               <a className="btn btn-ghost rounded-btn btn-sm">Miscellaneous</a>
             </Link>

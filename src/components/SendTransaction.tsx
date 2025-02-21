@@ -1,14 +1,14 @@
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import {
-  Keypair,
   LAMPORTS_PER_SOL,
   PublicKey,
   SystemProgram,
   Transaction,
   TransactionSignature,
 } from "@solana/web3.js";
-import { FC, useCallback, useState } from "react";
+import { ChangeEvent, FC, useCallback, useState } from "react";
 import { notify } from "../utils/notifications";
+import { INPUT_FLOAT_REGEX } from "../constants";
 
 export const SendTransaction: FC = () => {
   const { connection } = useConnection();
@@ -16,9 +16,8 @@ export const SendTransaction: FC = () => {
 
   const [amount, setAmount] = useState("0.0");
 
-  const solInputValidation = async (e) => {
-    const monstrosity = /((^\.(\d+)?$)|(^\d+(\.\d*)?$)|(^$))/;
-    const res = new RegExp(monstrosity).exec(e.target.value);
+  const solInputValidation = async (e: ChangeEvent<HTMLInputElement>) => {
+    const res = new RegExp(INPUT_FLOAT_REGEX).exec(e.target.value);
     res && setAmount(e.target.value);
   };
 

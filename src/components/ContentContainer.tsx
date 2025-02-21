@@ -30,6 +30,11 @@ export const ContentContainer: FC = (props) => {
             </Link>
           </li>
           <li>
+            <Link href="/utils">
+              <a>Token utils</a>
+            </Link>
+          </li>
+          <li>
             <Link href="/misc">
               <a>Miscellaneous</a>
             </Link>
