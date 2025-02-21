@@ -97,9 +97,6 @@ export const Mint: FC = () => {
   return (
     <div>
       <div>
-        <div className="p-2">
-          <div className="text-xl font-normal">Mint tokens</div>
-        </div>
         <div className="mt-4 sm:grid sm:grid-cols-2 sm:gap-4">
           <div className="m-auto p-2 text-xl font-normal">
             Token mint address
