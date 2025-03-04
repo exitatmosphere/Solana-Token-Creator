@@ -1,6 +1,7 @@
-import { Mint } from "components/Mint";
-import { TOKEN_OPERATIONS } from "../../constants";
 import { FC, useState } from "react";
+import { TOKEN_OPERATIONS } from "../../constants";
+import { Mint } from "components/Mint";
+import { RevokeAuthority } from "components/RevokeAuthority";
 
 export const UtilsView: FC = ({}) => {
   const [operation, setOperation] = useState(TOKEN_OPERATIONS.MINT);
@@ -24,12 +25,17 @@ export const UtilsView: FC = ({}) => {
                   }
                 >
                   <option value={TOKEN_OPERATIONS.MINT}>Mint token</option>
+                  <option value={TOKEN_OPERATIONS.REVOKE_AUTHORITY}>
+                    Revoke authority
+                  </option>
                 </select>
               </div>
               {(() => {
                 switch (operation) {
                   case TOKEN_OPERATIONS.MINT:
                     return <Mint />;
+                  case TOKEN_OPERATIONS.REVOKE_AUTHORITY:
+                    return <RevokeAuthority />;
                   default:
                     break;
                 }

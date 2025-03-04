@@ -45,7 +45,7 @@ export const HomeView: FC = ({}) => {
               className="cursor-pointer bg-gradient-to-tr bg-clip-text text-transparent hover:from-pink-500 hover:to-yellow-500"
               href="./utils"
             >
-              Mint token
+              Mint token, revoke mint and freeze authority
             </a>
           </li>
         </ol>
